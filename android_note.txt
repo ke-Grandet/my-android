@@ -59,8 +59,21 @@
 2、事件类需要实现setOnCheckedChangeListener接口中的onCheckedChanged(RadioGroup radioGroup, int checkId)，checkId是被选中的RadioButton的id
 3、RadioButton设置android:button="@null"可以隐藏圆形按钮，只显示文字
 
+	MVVM
+1、Android MVVM官方文档：https://developer.android.google.cn/jetpack/docs/guide#persist-data
+2、viewmodel.factory参考1：https://www.cnblogs.com/yuanhao-1999/p/11534568.html
+3、viewmodel.factory参考2：https://blog.csdn.net/VcStrong/article/details/104552939/
+4、使用生命周期感知型组件处理生命周期：https://developer.android.google.cn/topic/libraries/architecture/lifecycle?hl=zh_cn
 
+	dialog
+1、dialog弹窗：https://www.cnblogs.com/gzdaijie/p/5222191.html
+
+	布局
+1、官方文档：https://developer.android.google.cn/training/constraint-layout?hl=zh_cn#constrain-to-a-guideline
+
+	ARouter
+1、路由跳转—IProvider：https://www.jianshu.com/p/9b13f7b3ea96
+2、探索Android路由框架-ARouter之基本使用（一）：https://www.jianshu.com/p/6021f3f61fa6
+	
 rxjava
 butterknife
-mvp
-dto vo
