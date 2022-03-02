@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="catchRateViewModel"
+            type="com.example.myapplication.viewModel.CatchDataViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".view.activity.CatchActivity">
+
+        <TextView
+            android:id="@+id/textViewSuccessRate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="64dp"
+            android:text="@{catchRateViewModel.catchRateData.successRate}"
+            android:hint="@string/calculateSuccessRate"
+            android:textSize="36sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textViewB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="48dp"
+            android:includeFontPadding="false"
+            android:text="@{catchRateViewModel.catchRateData.B}"
+            android:hint="@string/calculateB"
+            android:textSize="30sp"
+            app:fontFamily="sans-serif"
+            app:layout_constraintBottom_toTopOf="@+id/textViewRate"
+            app:layout_constraintEnd_toEndOf="@+id/textViewRate"
+            app:layout_constraintStart_toStartOf="@+id/textViewRate" />
+
+        <TextView
+            android:id="@+id/textViewMaxHP"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="64dp"
+            android:text="@string/catchMaxHP"
+            app:layout_constraintEnd_toEndOf="@+id/textViewSuccessRate"
+            app:layout_constraintStart_toStartOf="@+id/textViewSuccessRate"
+            app:layout_constraintTop_toBottomOf="@+id/textViewSuccessRate" />
+
+        <TextView
+            android:id="@+id/textViewNowHP"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="48dp"
+            android:text="@string/catchNowHP"
+            app:layout_constraintStart_toEndOf="@+id/textViewMaxHP"
+            app:layout_constraintTop_toTopOf="@+id/textViewMaxHP" />
+
+        <TextView
+            android:id="@+id/textViewRate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="48dp"
+            android:text="@string/catchRate"
+            app:layout_constraintEnd_toStartOf="@+id/textViewRateCorrected"
+            app:layout_constraintTop_toTopOf="@+id/textViewRateCorrected" />
+
+        <TextView
+            android:id="@+id/textViewRateCorrected"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="@string/catchRateCorrected"
+            app:layout_constraintEnd_toEndOf="@+id/textViewMaxHP"
+            app:layout_constraintStart_toStartOf="@+id/textViewMaxHP"
+            app:layout_constraintTop_toBottomOf="@+id/editTextMaxHP" />
+
+        <TextView
+            android:id="@+id/textViewStatusCorrected"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/catchStatusCorrected"
+            app:layout_constraintEnd_toEndOf="@+id/textViewNowHP"
+            app:layout_constraintStart_toStartOf="@+id/textViewNowHP"
+            app:layout_constraintTop_toTopOf="@+id/textViewRateCorrected" />
+
+        <EditText
+            android:id="@+id/editTextMaxHP"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@={catchRateViewModel.catchRateData.maxHP}"
+            android:hint="@string/defaultMaxHP"
+            android:inputType="number"
+            android:imeOptions="actionDone"
+            app:layout_constraintEnd_toEndOf="@+id/textViewMaxHP"
+            app:layout_constraintStart_toStartOf="@+id/textViewMaxHP"
+            app:layout_constraintTop_toBottomOf="@+id/textViewMaxHP"
+            android:autofillHints="" />
+
+        <EditText
+            android:id="@+id/editTextNowHP"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@={catchRateViewModel.catchRateData.nowHP}"
+            android:hint="@string/defaultNowHP"
+            android:inputType="number"
+            android:imeOptions="actionDone"
+            app:layout_constraintEnd_toEndOf="@+id/textViewNowHP"
+            app:layout_constraintStart_toStartOf="@+id/textViewNowHP"
+            app:layout_constraintTop_toBottomOf="@+id/textViewNowHP"
+            android:autofillHints="" />
+
+        <EditText
+            android:id="@+id/editTextRate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@={catchRateViewModel.catchRateData.rate}"
+            android:hint="@string/defaultRate"
+            android:inputType="number"
+            app:layout_constraintEnd_toEndOf="@+id/textViewRate"
+            app:layout_constraintStart_toStartOf="@+id/textViewRate"
+            app:layout_constraintTop_toBottomOf="@+id/textViewRate"
+            android:autofillHints="" />
+
+        <EditText
+            android:id="@+id/editTextRateCorrected"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@={catchRateViewModel.catchRateData.rateCorrected}"
+            android:hint="@string/defaultRateCorrected"
+            android:inputType="numberDecimal"
+            app:layout_constraintEnd_toEndOf="@+id/textViewRateCorrected"
+            app:layout_constraintStart_toStartOf="@+id/textViewRateCorrected"
+            app:layout_constraintTop_toBottomOf="@+id/textViewRateCorrected"
+            android:autofillHints="" />
+
+        <EditText
+            android:id="@+id/editTextStatusCorrected"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@={catchRateViewModel.catchRateData.statusCorrected}"
+            android:hint="@string/defaultStatusCorrected"
+            android:inputType="numberDecimal"
+            app:layout_constraintEnd_toEndOf="@+id/textViewStatusCorrected"
+            app:layout_constraintStart_toStartOf="@+id/textViewStatusCorrected"
+            app:layout_constraintTop_toBottomOf="@+id/textViewStatusCorrected"
+            android:autofillHints="" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="48dp"
+            android:layout_marginEnd="32dp"
+            android:text="@string/describe"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextRateCorrected" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

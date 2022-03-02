@@ -1,0 +1,34 @@
+<resources>
+    <string name="app_name">My Application</string>
+<!--    MainActivity-->
+    <string name="btnGotoNotificationActivity">外域</string>
+    <string name="edit_message">Enter a message</string>
+    <string name="btnGotoCatchActivity">捕获率计算</string>
+    <string name="btnThread">时钟开关</string>
+    
+<!--    CatchRateActivity-->
+    <string name="calculateSuccessRate">0.00%</string>
+    <string name="calculateB">0.00</string>
+    <string name="catchNowHP">当前HP</string>
+    <string name="catchMaxHP">最大HP</string>
+    <string name="catchRate">捕获率</string>
+    <string name="catchRateCorrected">捕获修正</string>
+    <string name="catchStatusCorrected">状态修正</string>
+    <string name="defaultNowHP">1</string>
+    <string name="defaultMaxHP">10</string>
+    <string name="defaultRate">255</string>
+    <string name="defaultRateCorrected">1.0</string>
+    <string name="defaultStatusCorrected">2.0</string>
+    <string name="describe">
+        1、适用于第三、第四世代的捕获率计算\n
+        2、最上方百分比表示捕捉成功率\n
+        3、成功率下方的第一个数字是由官方公式带入参数计算得到，数值越大成功率越大，达到255时必定捕捉成功\n
+        4、当前生命值为0时的计算结果没有意义\n
+        5、捕获率请查阅官方资料\n
+        6、捕获修正指精灵球的捕获率修正\n
+        7、状态修正：冰冻、睡眠为2.0，中毒、灼伤、麻痹为1.5\n
+    </string>
+    
+    <!--    NotificationActivity-->
+    <string name="btnCamera">隐式Intent打开相机</string>
+</resources>

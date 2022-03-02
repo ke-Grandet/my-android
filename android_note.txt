@@ -1,0 +1,66 @@
+	findViewById空指针错误的原因
+1、findViewById写在setContentView之前而导致
+
+	监听事件触发
+1、调用setOnClickListener(OnClickListener event)等方法绑定事件对象
+2、自定义事件类要实现OnClickListener接口，实现其中的OnClick(View view)方法
+3、或者自定义方法myClick(View view)，在布局文件xml中注明android:onClick="myClick"
+
+	Handler的推荐用法（来源：https://blog.csdn.net/cshichao/article/details/8787357中的第三种方法）
+1、采用弱引用的方式来解决问题，先定义一个static的内部类MyHandler，然后让它持有Activity的弱引用
+2、Handler用于多线程更新UI组件	
+
+	Activity
+1、AppCompatActivity导航栏返回键会onDestroy要恢复的活动，然后再重新onCreate，按控制栏返回不会重新创建，但控制栏返回会在Activity实现onKeyDown事件并返回false时失效
+2、启动模式android:launchMode="standard、singleTop、singleTask、singleInstance"
+3、清单文件<applycation>标签设置属性android:theme="Theme.AppCompat.Light.NoActionBar"可以去掉AppCompatActivity自带的导航栏
+
+	Service
+1、非绑定的服务可像Activity一样通过startService(Activity.this, Service.class)启动
+2、绑定的服务通过Binder对象与Activity交互，Activity通过自身内部的ServiceConnection对象获得Service的onBind方法返回的Binder对象
+3、ServiceConnetion在实现的onServiceConnected方法体中将得到的Binder对象保存在Activity内
+4、ItentService:当一个后台的任务,需要分成几个子任务,然后按先后顺序执行(简单的说就是异步操作),如果还是定义一个普通Service然后在onStart方法中开辟线程,然后又要去控制线程,这样显得非常的繁琐; 此时应该自定义一个IntentService然后在onHandleIntent()方法中完成相关任务
+
+	Notification
+1、Notification是前台Service，Android 8.0以上版本使用前需要先创建渠道NotificationChannel并设置重要性
+2、触发常规Activity：通过taskStackBuilder.addNextIntentWithParentStack(Intent)设置返回栈，再由taskStackBuilder.getPendingIntent得到PendingIntent
+3、触发特殊Activity：intent.setFlag之后直接由PendingIntent.getActivity得到PendingIntent
+需要设置清单文件
+            android:taskAffinity=""
+            android:excludeFromRecents="true"
+4、创建NotificationCompat.Builder对象进行通知的标题内容等设置，由NotificationManagerCompat.notify发出通知
+
+	Intent
+1、隐式Intent调用startActivity(Intent)前先通过if(intent.resolveActivity(getPackageManager()) != null)判断是否有Activity响应
+2、一个Intent可以有最多一个action，多个category，一个data
+3、当intent-filter的action和category范围包含Intent对象的范围，data匹配Intent对象的data时Intent才能通过过滤器
+
+	Broadcast（静态注册广播受限，应使用JobScheduled）
+1、动态广播：实例化一个BroadcastReceiver对象，再实例化一个IntentFilter对象并设置addAction(String)，调用静态方法registerReceiver(BroadReceiver, IntentFilter)将两者绑定,并在onDestroy()中通过静态方法unregisterReceiver进行回收
+2、静态广播：在清单文件中<Receiver>组件标签下添加<intent-filter>标签，并设置其<action>
+3、本地广播是动态广播的一种，不再调用静态方法绑定广播，而是使用LocalBroadcastManager.getInstance(this)获取本地广播管理器实例，调用其registerReceiver、unregisterReceiver和sendBroadcast进行管理，其它操作与一般动态广播相同
+4、从广播中（或其它地方）启动Activity需要设置intent.setFlag(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+	ContentProvider
+1、通常使用ContentResolver对象获取本机数据，如通讯录
+2、（ContactsContract.Contacts._ID） 类比 （数据库.表.列），查询通讯录使用cursor=ContentProvider.query(ContactsContract.Contacts, null, null, null, null)
+
+	Fragment
+1、必须实现onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)回调接口,return inflater.inflate(R.layout.fragment_blank, container, false);
+2、动态添加/修改：
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+			fragmentTransaction.add 或 fragmentTransaction.replace
+			fragmentTransaction.commit();
+3、需要主动调用addToBackStack()将Fragment放入返回栈
+
+	RadioGroup
+1、本质是LinearLayout布局，默认方向竖直
+2、事件类需要实现setOnCheckedChangeListener接口中的onCheckedChanged(RadioGroup radioGroup, int checkId)，checkId是被选中的RadioButton的id
+3、RadioButton设置android:button="@null"可以隐藏圆形按钮，只显示文字
+
+
+rxjava
+butterknife
+mvp
+dto vo
